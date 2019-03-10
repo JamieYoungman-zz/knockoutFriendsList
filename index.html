@@ -1,0 +1,46 @@
+
+<html>
+    <head>
+        <title>Friends List</title>
+
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js'></script>
+    </head>
+    <body>
+        <h1>Friends List</h1>
+
+        <p>Hello my name is <span data-bind="text: myFullName"></span></p>
+        <p>And these are my friends:</p>
+
+        <ul data-bind="foreach: myFriends">
+            <li data-bind="text: firstName"></li>
+        </ul>
+
+        <script type="text/javascript">
+            const viewModel = () => {
+
+                this.myFirstName = ko.observable('Jamie')
+                this.myLastName = ko.observable('Youngman')
+
+                this.myFriends = ko.observableArray([
+                    {
+                        firstName: 'Alistair',
+                        lastName: 'Stanley'
+                    },
+                    {
+                        firstName: 'Todd',
+                        lastName: 'Watson'
+                    }
+                    
+                ])     
+
+                this.myFullName = ko.computed(() => `${this.myFirstName()} ${this.myLastName()}`, this);
+
+            };          
+
+            ko.applyBindings(viewModel);
+
+        </script>
+
+    </body>
+</html>
+
